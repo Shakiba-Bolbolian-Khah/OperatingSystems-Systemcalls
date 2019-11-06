@@ -89,3 +89,32 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+int
+sys_count_num_of_digits(void){
+  int num =0;
+
+//~~~~~~~Checking~~~~~~//
+  cprintf("Your Num: %d \n", num);
+//~~~~~~~~~~~~~~~~~~~~~//
+  asm ( 
+    "movl %%ebx,%0;"
+    :"=r"(num)
+    :
+    :"%ebx"
+  );
+
+//~~~~~~~Checking~~~~~~//
+  cprintf("Your Num: %d \n", num);
+//~~~~~~~~~~~~~~~~~~~~//
+
+
+  int digits = 0;
+  while(num != 0){
+    digits += 1;
+    num = num / 10;
+  }
+  cprintf("Number of digits of entered number is: %d \n", digits);
+
+  return 0;
+}

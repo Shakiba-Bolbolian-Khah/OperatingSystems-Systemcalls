@@ -118,3 +118,20 @@ sys_count_num_of_digits(void){
 
   return 0;
 }
+
+int
+sys_get_parent_id(void)
+{
+  return get_parent_id();
+}
+
+int
+sys_get_children(void)
+{
+  int pid;
+
+  if(argint(0, &pid) < 0)
+    return -1;
+
+  return get_children(pid);
+}

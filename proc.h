@@ -56,5 +56,3 @@ struct proc {
 //   original data and bss
 //   fixed-size stack
 //   expandable heap
-int get_parent_id(void);
-int get_children(int pid);

@@ -121,6 +121,8 @@ int             wait(void);
 void            wakeup(void*);
 void            yield(void);
 int             count_num_of_digits(int);
+int             get_parent_id(void);
+int             get_children(int pid);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

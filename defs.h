@@ -122,7 +122,7 @@ void            wakeup(void*);
 void            yield(void);
 int             count_num_of_digits(int);
 int             get_parent_id(void);
-int             get_children(int pid);
+int             get_children(int);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

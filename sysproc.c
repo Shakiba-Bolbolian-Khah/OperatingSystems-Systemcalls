@@ -97,11 +97,12 @@ sys_count_num_of_digits(void){
 //~~~~~~~Checking~~~~~~//
   cprintf("Your Num: %d \n", num);
 //~~~~~~~~~~~~~~~~~~~~~//
+
   asm ( 
-    "movl %%ebx,%0;"
+    "movl %%edi,%0;"
     :"=r"(num)
     :
-    :"%ebx"
+    :"%edi"
   );
 
 //~~~~~~~Checking~~~~~~//

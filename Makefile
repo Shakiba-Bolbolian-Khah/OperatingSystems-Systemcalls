@@ -169,8 +169,7 @@ UPROGS=\
 	_cat\
 	_count_digit\
 	_echo\
-	_find_parent\
-	_find_children\
+	_test_fork\
 	_grep\
 	_init\
 	_kill\

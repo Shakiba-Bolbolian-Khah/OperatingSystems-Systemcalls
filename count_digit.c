@@ -11,7 +11,7 @@ main(int argc, char *argv[])
     exit();
   }
 
-  int num = 0 , previous_ebx;
+  int num = 0 , previous_edi;
 
 //~~~~~~~~~~~~~~~~~~Provide negative numbers~~~~~~~~~~~~~~~~~~~~~~~~~~//
   // char s = (char) argv[1][0];
@@ -27,44 +27,44 @@ main(int argc, char *argv[])
   num = atoi(argv[1]);
 
 //~~~~~~~Checking~~~~~~//
-  printf(1,"Num entered: %d \n", num);
+  // printf(1,"Num entered: %d \n", num);
 //~~~~~~~~~~~~~~~~~~~~~//
   
   asm ( 
-    "movl %%ebx,%0;"
-    :"=r"(previous_ebx)
+    "movl %%edi,%0;"
+    :"=r"(previous_edi)
     :
-    :"%ebx"
+    :"%edi"
   );
 //~~~~~~~Checking~~~~~~//
-  printf(1,"Previous one: %d \n", previous_ebx);
+  // printf(1,"Previous one: %d \n", previous_edi);
 //~~~~~~~~~~~~~~~~~~~~~//
 
   asm ( 
-    "movl %0,%%ebx;"
+    "movl %0,%%edi;"
     :
     :"r"(num)
-    :"%ebx"
+    :"%edi"
   );
 
 //~~~~~~~Checking~~~~~~//
   int new;
   asm ( 
-    "movl %%ebx,%0;"
+    "movl %%edi,%0;"
     :"=r"(new)
     :
-    :"%ebx"
+    :"%edi"
   );
-  printf(1,"Num in register: %d \n", new); 
+  // printf(1,"Num in register: %d \n", new); 
 //~~~~~~~~~~~~~~~~~~~~//
 
   count_num_of_digits(num);
 
   asm ( 
-    "movl %0,%%ebx;"
+    "movl %0,%%edi;"
     :
-    :"r"(previous_ebx)
-    :"%ebx"
+    :"r"(previous_edi)
+    :"%edi"
   );
 
   exit();

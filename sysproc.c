@@ -94,21 +94,9 @@ int
 sys_count_num_of_digits(void){
   int num =0;
 
-//~~~~~~~Checking~~~~~~//
-  cprintf("Your Num: %d \n", num);
-//~~~~~~~~~~~~~~~~~~~~~//
-
-  asm ( 
-    "movl %%edi,%0;"
-    :"=r"(num)
-    :
-    :"%edi"
-  );
-
-//~~~~~~~Checking~~~~~~//
-  cprintf("Your Num: %d \n", num);
-//~~~~~~~~~~~~~~~~~~~~//
-
+  struct proc *curproc = myproc();
+  struct trapframe *trp = curproc-> tf;
+  num = trp -> esi;
 
   int digits = 0;
   while(num != 0){

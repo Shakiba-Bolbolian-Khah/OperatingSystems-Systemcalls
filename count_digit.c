@@ -11,60 +11,46 @@ main(int argc, char *argv[])
     exit();
   }
 
-  int num = 0 , previous_edi;
+  int num = 0 , j = 0, previous_esi;
 
-//~~~~~~~~~~~~~~~~~~Provide negative numbers~~~~~~~~~~~~~~~~~~~~~~~~~~//
-  // char s = (char) argv[1][0];
-  // if((strcmp(&s,"-"))== 0){
-  //   j = 1;
-  // }
+  char s = (char) argv[1][0];
+  if((strcmp(&s,"-"))== 0){
+    j = 1;
+  }
 
-  // for( int i = j; i < strlen(argv[1]); i++){
-	// 	num = num * 10 + ( argv[1][i] - '0' );
-	// }
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+  for( int i = j; i < strlen(argv[1]); i++){
+		num = num * 10 + ( argv[1][i] - '0' );
+	}
 
-  num = atoi(argv[1]);
-
-//~~~~~~~Checking~~~~~~//
-  // printf(1,"Num entered: %d \n", num);
-//~~~~~~~~~~~~~~~~~~~~~//
-  
-  asm ( 
-    "movl %%edi,%0;"
-    :"=r"(previous_edi)
+  asm volatile( 
+    "movl %%esi,%0;"
+    :"=r"(previous_esi)
     :
-    :"%edi"
+    :"%esi"
   );
-//~~~~~~~Checking~~~~~~//
-  // printf(1,"Previous one: %d \n", previous_edi);
-//~~~~~~~~~~~~~~~~~~~~~//
 
-  asm ( 
-    "movl %0,%%edi;"
+  asm volatile( 
+    "movl %0,%%esi;"
     :
     :"r"(num)
-    :"%edi"
+    :"%esi"
   );
 
-//~~~~~~~Checking~~~~~~//
-  int new;
-  asm ( 
-    "movl %%edi,%0;"
+  int new = 0;
+  asm volatile( 
+    "movl %%esi,%0;"
     :"=r"(new)
     :
-    :"%edi"
+    :"%esi"
   );
-  // printf(1,"Num in register: %d \n", new); 
-//~~~~~~~~~~~~~~~~~~~~//
-
+  
   count_num_of_digits(num);
 
-  asm ( 
-    "movl %0,%%edi;"
+  asm volatile( 
+    "movl %0,%%esi;"
     :
-    :"r"(previous_edi)
-    :"%edi"
+    :"r"(previous_esi)
+    :"%esi"
   );
 
   exit();

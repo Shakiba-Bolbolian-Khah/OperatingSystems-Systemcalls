@@ -167,6 +167,8 @@ mkfs: mkfs.c fs.h
 
 UPROGS=\
 	_cat\
+	_get_time\
+	_stop\
 	_count_digit\
 	_echo\
 	_test_fork\

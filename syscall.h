@@ -23,3 +23,6 @@
 #define SYS_count_num_of_digits 22
 #define SYS_get_parent_id 23
 #define SYS_get_children 24
+#define SYS_get_time 25
+#define SYS_stop 26
+

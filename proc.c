@@ -566,10 +566,38 @@ get_children(int pid)
   return children;
 }
 
+
 int
 get_subtree(int pid)
 {
-  cprintf("dfdfdf\n");
-  cprintf("%d", pid);
-  return 0;
+  struct proc *p;
+  int subtree = 0, temp, i = 0, j = 1;
+  int nodes[20];
+
+  for( int k = 1; k < 20; k++){
+    nodes[k] = 0;
+  }
+
+  nodes[0] = pid;
+  acquire(&ptable.lock);
+
+  while (nodes[i] != 0)
+  {
+    for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+      if(p->parent->pid == nodes[i]){
+        temp = p -> pid;
+        while (temp != 0){
+          temp = temp / 10; 
+          subtree = subtree * 10;     
+        }
+        subtree = subtree + p->pid; 
+        nodes[j] = p-> pid;
+        j++;
+      }
+    }
+    i++;
+  }  
+
+  release(&ptable.lock);
+  return subtree;
 }

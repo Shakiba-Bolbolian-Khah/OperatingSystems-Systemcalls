@@ -25,4 +25,5 @@
 #define SYS_get_children 24
 #define SYS_get_time 25
 #define SYS_stop 26
+#define SYS_get_subtree 27
 

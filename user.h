@@ -28,6 +28,7 @@ int get_parent_id(void);
 int get_children(int);
 int get_time(void);
 int stop(int);
+int get_subtree(int);
 
 // ulib.c
 int stat(const char*, struct stat*);

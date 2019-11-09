@@ -172,6 +172,7 @@ UPROGS=\
 	_count_digit\
 	_echo\
 	_test_fork\
+	_find_subtree\
 	_grep\
 	_init\
 	_kill\

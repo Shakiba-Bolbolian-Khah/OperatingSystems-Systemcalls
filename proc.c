@@ -566,3 +566,10 @@ get_children(int pid)
   return children;
 }
 
+int
+get_subtree(int pid)
+{
+  cprintf("dfdfdf\n");
+  cprintf("%d", pid);
+  return 0;
+}

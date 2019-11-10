@@ -109,6 +109,7 @@ extern int sys_get_children(void);
 extern int sys_get_time(void);
 extern int sys_stop(void);
 extern int sys_get_subtree(void);
+extern int sys_set_path(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -138,6 +139,7 @@ static int (*syscalls[])(void) = {
 [SYS_get_time] sys_get_time,
 [SYS_stop] sys_stop,
 [SYS_get_subtree] sys_get_subtree,
+[SYS_set_path] sys_set_path,
 };
 
 void

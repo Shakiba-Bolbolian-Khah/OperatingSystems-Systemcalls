@@ -26,4 +26,4 @@
 #define SYS_get_time 25
 #define SYS_stop 26
 #define SYS_get_subtree 27
-
+#define SYS_set_path 28

@@ -126,6 +126,7 @@ int             get_children(int);
 int             get_time(void);
 int             stop(int);
 int             get_subtree(int);
+int             set_path(const char*);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

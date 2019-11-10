@@ -173,6 +173,7 @@ UPROGS=\
 	_echo\
 	_test_fork\
 	_find_subtree\
+	_set_path\
 	_grep\
 	_init\
 	_kill\

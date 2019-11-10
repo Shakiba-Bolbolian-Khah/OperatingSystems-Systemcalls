@@ -7,6 +7,21 @@
 #include "x86.h"
 #include "elf.h"
 
+static char*
+concat(char* a, char* b)
+{
+  static char c[20];
+  for (int i = 0; i < strlen(a); i++)
+  {
+    *(c+i) = *(a+i);
+  }
+  for (int i = strlen(a); i < strlen(a)+strlen(b); ++i)
+  {
+    *(c+i) = *(b+i-strlen(a));
+  }
+  return c;
+}
+
 int
 exec(char *path, char **argv)
 {
@@ -21,11 +36,23 @@ exec(char *path, char **argv)
 
   begin_op();
 
+  int flag = 0;
   if((ip = namei(path)) == 0){
+    for (int i = 0; i < 10; i++){
+      if((ip = namei(concat(PATH[i],path))) != 0){
+        flag = 1;
+        break;
+      }
+    }
+  }
+  else
+    flag = 1;
+  if(flag == 0){
     end_op();
     cprintf("exec: fail\n");
     return -1;
   }
+
   ilock(ip);
   pgdir = 0;
 

@@ -6,8 +6,10 @@ int
 main(int argc, char *argv[])
 {
 
-  if(argc != 2)
+  if(argc != 2){
+  	printf(1,"Stop: No number has been entered!\n");
   	exit();
+  }
 
   int wait_time = atoi(argv[1]);
 

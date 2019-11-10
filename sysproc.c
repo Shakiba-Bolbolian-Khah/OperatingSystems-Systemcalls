@@ -163,3 +163,30 @@ sys_get_subtree(void)
 
   return get_subtree(pid);
 }
+
+int
+sys_set_path(void)
+{
+  for (int i = 0; i < 10; i++){
+    for (int l = 0; l < 10; l++){
+      PATH[i][l] = 0;
+    }
+  }
+  static char *temp;
+  argstr(0,&temp);
+  const char* new_PATH = temp;
+  int j = 0, k = 0;
+
+  for (int i = 0; i < strlen(new_PATH); i++){
+    if (*(new_PATH+i) == ':'){
+      PATH[j][k] = '/';
+      j++;
+      k = 0;
+      continue;
+    }
+    PATH[j][k] = *(new_PATH+i);
+    k++;
+  }
+
+  return 0;
+}

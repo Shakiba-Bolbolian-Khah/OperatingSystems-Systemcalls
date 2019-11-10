@@ -16,7 +16,7 @@ main(int argc, char *argv[])
         if(!pid){
             id = getpid();
             parent = get_parent_id();
-            printf(1,"Parernt of current process with pid %d is: %d \n", id, parent);
+            printf(1,"Parent of current process with pid %d is: %d \n", id, parent);
             break;
         }
         else{  
@@ -25,11 +25,10 @@ main(int argc, char *argv[])
     }
 
     if(getpid() == parent_id){
-        id = getpid();
-        children = get_children(id);
-        printf(1,"Children of current process with pid %d is: %d \n", id, children);
+        children = get_children(parent_id);
+        printf(1,"Children of current process with pid %d is: %d \n", parent_id, children);
         for(int i = 0; i < 4; i++){
-        wait();
+            wait();
         }  
     }
     

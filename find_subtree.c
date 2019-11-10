@@ -6,52 +6,44 @@
 int
 main(int argc, char *argv[])
 {
-    int pid, id, children, grandparent, parent = 0;
-    int grandparent_id = getpid();
+    int pid, id, children, parent, my_p = 0, subtree;
+    int parent_id = getpid();
 
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 4; i++){
         pid = fork();
         if(!pid){
             id = getpid();
-            grandparent = get_parent_id();
-            printf(1,"Parernt of current process with pid %d is: %d \n", id, grandparent);
-            if(i==0){
-                parent = id;
-                for(int i = 0; i < 3; i++){
-                    pid = fork();
-                    if(!pid){
-                        id = getpid();
-                        parent = get_parent_id();
-                        printf(1,"Parernt of current process with pid %d is: %d \n", id, parent);
-                    }
-                    else{  
-                        sleep(10); 
-                    }
+            parent = get_parent_id();
+            printf(1,"Parent of current process with pid %d is: %d \n", id, parent);
+            if (i == 3){
+                if (!fork()){
+                    id = getpid();
+                    my_p = get_parent_id();
+                    printf(1,"Parent of current process with pid %d is: %d \n", id, my_p);
+                    break;
                 }
-            }
+                else{
+                    stop(1);
+                    children = get_children(getpid());
+                    printf(1,"Children of current process with pid %d is: %d \n", getpid(), children);
+                    wait();
+                }
+            } 
             break;
         }
         else{  
-            sleep(10); 
+            sleep(10);
         }
     }
-
-    if(getpid() == grandparent_id){
-        id = getpid();
-        children = get_subtree(id);
-        printf(1,"Children of current process with pid %d is: %d \n", id, children);
-        for(int i = 0; i < 7; i++){
+    
+    if(getpid() == parent_id){
+        subtree = get_subtree(parent_id);
+        printf(1,"Subtree of current process with pid %d is: %d \n", parent_id, subtree);
+        for(int i = 0; i < 5; i++){
             wait();
-        }  
+        }
     }
-    if(getpid() == parent){
-        id = getpid();
-        children = get_subtree(id);
-        printf(1,"Children of current process with pid %d is: %d \n", id, children);
-        for(int i = 0; i < 3; i++){
-            wait();
-        } 
-    }
+    
     
     exit();
     return 0;
